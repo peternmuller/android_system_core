@@ -325,7 +325,7 @@ void Service::Reap(const siginfo_t& siginfo) {
 #endif
     const bool use_default_mount_ns =
             mount_namespace_.has_value() && *mount_namespace_ == NS_DEFAULT;
-    const bool is_process_updatable = use_default_mount_ns && is_apex_updatable;
+    const bool is_process_updatable = use_default_mount_ns && is_apex_updatable && is_updatable();
 
 #if defined(__BIONIC__) && defined(SEGV_MTEAERR)
     // As a precaution, we only upgrade a service once per reboot, to limit
